@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+
 
 db = SQLAlchemy()
 
@@ -12,7 +12,8 @@ class Product(db.Model):
     image = db.Column(db.String, nullable=False)
     
 
-    def __init__(self, title, price, category, description, image):
+    def __init__(self, id, title, price, category, description, image):
+        self.id = id
         self.title = title
         self.price = price
         self.category = category
@@ -23,3 +24,13 @@ class Product(db.Model):
     def saveProduct(self):
         db.session.add(self)
         db.session.commit()
+
+    def to_dict(self):
+        return {
+            'id' : self.id,
+            'title' : self.title,
+            'price' : self.price,
+            'category' : self.category,
+            'description' : self.description,
+            'image' : self.image
+        }
