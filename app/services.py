@@ -23,5 +23,19 @@ def getProduct():
         
                 new_product = Product(id, title, price, category, description, image)
                 new_product.saveProduct()
+
+
+
+# def getSingleProduct(id):
+#     res = requests.get(f"https://fakestoreapi.com/products/{id}")
+#     if res.ok:
+#         data = res.json()
+#         print(data)
+#         for d in data:
+#             pid = d["id"]
+#             prod = Product.query.get(pid)
+#             return prod
+
+
                 
      

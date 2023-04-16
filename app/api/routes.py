@@ -13,5 +13,21 @@ def getProds():
         'item_count' : len(prodlist)
     }
 
+@api.route('/product/<int:prod_id>')
+def getIndProd(prod_id):
+    p = Product.query.get(prod_id)
+    if p:
+        prod = p.to_dict()
+        return {
+            'status': 'ok',
+            'data': prod,
+        }
+    return {
+        'status': 'Error',
+        'message': 'No product with that ID exists',
+    }
+
+
+
 
 
