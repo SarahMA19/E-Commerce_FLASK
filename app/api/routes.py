@@ -13,19 +13,21 @@ def getProds():
         'item_count' : len(prodlist)
     }
 
-@api.route('/product/<int:prod_id>')
-def getIndProd(prod_id):
-    p = Product.query.get(prod_id)
-    if p:
-        prod = p.to_dict()
-        return {
+@api.route('/db/<int:product_id>')
+def indPost(product_id):
+    product = Product.query.get(product_id)
+    if product:
+        p = product.to_dict() # Assuming to_dict() method returns a dictionary with product data
+        return ({
             'status': 'ok',
-            'data': prod,
-        }
-    return {
-        'status': 'Error',
-        'message': 'No product with that ID exists',
-    }
+            'data': p,
+            'item_count': 1 # Since you are returning a single product
+        })
+    else:
+        return ({
+            'status': 'error',
+            'message': 'Product not found'
+        }), 404 # Return a 404 status code if product not found
 
 
 
