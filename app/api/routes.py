@@ -1,7 +1,10 @@
 from flask import Blueprint, request
 from ..models import Product 
+from ..services import getProduct
 
 api = Blueprint('api', __name__, url_prefix='/api')
+
+
 
 @api.route('/products')
 def getProds():
